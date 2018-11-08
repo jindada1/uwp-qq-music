@@ -27,7 +27,11 @@ namespace App1
             // get jiading weather
             Invoke(() =>
             {
-                WeatherText.Text = Creeper.GetWeather();
+                try
+                {
+                    WeatherText.Text = Creeper.GetWeather();
+                }
+                catch (Exception) { }
                 try
                 {
                     GetPermission = Creeper.Get("http://111.231.107.125:9000/permission") == "ok";
