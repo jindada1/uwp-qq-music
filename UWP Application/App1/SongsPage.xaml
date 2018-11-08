@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="App1.SongsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls">
+
+    <RelativePanel>
+        <GridView x:Name="HotSongsArea" ItemsSource="{x:Bind HotSongs}" SizeChanged="HotSongsArea_SizeChanged"
+                  SelectionChanged="HotSongsArea_SelectionChanged"
+                  IsMultiSelectCheckBoxEnabled="False"
+                  RelativePanel.AlignTopWithPanel="True"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True">
+
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Margin" Value="10"/>
+                </Style>
+            </GridView.ItemContainerStyle>
+
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="local:Song" >
+                    <Grid  PointerEntered="Shadow_PointerEntered" PointerExited="Shadow_PointerExited" Background="WhiteSmoke">
+                        <StackPanel Padding="10" Orientation="Horizontal">
+                            <Image Height="100" Margin="15,0,0,0">
+                                <Image.Source>
+                                    <BitmapImage UriSource="{x:Bind album_url}" />
+                                </Image.Source>
+                            </Image>
+                            <Grid Padding="15,0,0,0">
+                                <TextBlock Text="{x:Bind name}" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
+                                <TextBlock Text="{x:Bind album}" VerticalAlignment="Center"/>
+                                <TextBlock Text="{x:Bind singers}" VerticalAlignment="Bottom"/>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+
+            <!--
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="local:Song" >
+                    <Grid  PointerEntered="Shadow_PointerEntered" PointerExited="Shadow_PointerExited" Background="WhiteSmoke">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="100">
+                                <Image.Source>
+                                    <BitmapImage UriSource="{x:Bind album_url}" />
+                                </Image.Source>
+                            </Image>
+                            <Grid Padding="15,0,0,0">
+                                <TextBlock Text="{x:Bind name}" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords" Margin="0,10,0,0"/>
+                                <TextBlock Text="{x:Bind album}" VerticalAlignment="Center" Foreground="Gray"/>
+                                <TextBlock Text="{x:Bind singers}" VerticalAlignment="Bottom" Margin="0,0,0,10"/>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+            -->
+
+        </GridView>
+        <TextBlock x:Name="greeting" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+    </RelativePanel>
+</Page>

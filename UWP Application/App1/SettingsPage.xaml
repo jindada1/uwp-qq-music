@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="App1.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Margin="40,32,40,0" Spacing="20">
+            <TextBlock Text="朕的御用设置" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center"/>
+            <StackPanel>
+                <TextBlock Text="劳资选中音乐的时候就开始播放（如果勾选，公共场合记得把外放音量调小或者带上耳机）" VerticalAlignment="Center"/>
+                <ToggleSwitch x:Name="autoplay" OffContent="先冷静一下" OnContent="燥！起！来！" Toggled="ToggleSwitch_Toggled"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="劳资下载的音乐存放在（点击查看或修改下载目录）" VerticalAlignment="Center"/>
+                <Grid>
+                    <Button Content="陛下，臣妾在这里！" Margin="0,10,0,0" Click="Button_Click"/>
+                    <Button Content="劳资要换个地方存你们" Margin="180,10,0,0" Click="Button_Click_1"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="自动将朕搜索过的纳入后宫（将搜索过的记录保存）" VerticalAlignment="Center"/>
+                <ToggleSwitch x:Name="autosavesearched" OffContent="滚" OnContent="朕！全都要" Toggled="ToggleSwitch_Toggled_1"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="提起裤子就走人（听完就删，自动删除试听下载的缓存）" VerticalAlignment="Center"/>
+                <ToggleSwitch x:Name="deletecache" OffContent="还是留点钱" OnContent="拜拜了您嘞~" Toggled="ToggleSwitch_Toggled_2"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

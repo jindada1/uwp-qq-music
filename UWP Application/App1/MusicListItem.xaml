@@ -1,0 +1,45 @@
+﻿<UserControl
+    x:Class="App1.MusicListItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="60"
+    d:DesignWidth="400">
+
+    <Grid>
+        <Border x:Name="Container" BorderThickness="0,0,0,1"  PointerEntered="Grid_PointerEntered" PointerExited="Grid_PointerExited" Background="#00000000">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FF424242"/>
+                    <GradientStop Color="Transparent" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            
+            <Grid HorizontalAlignment="Stretch" Height="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="5" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0" Margin="5,5,0,5">
+                    <TextBlock x:Name="SongName" Text="告白气球" FontWeight="Bold"/>
+                    <TextBlock x:Name="SingerName" Text="周杰伦" FontSize="14" VerticalAlignment="Bottom" Margin="0,0,0,5"/>
+                </Grid>
+                
+                <FontIcon x:Name="PlayIcon" Grid.Column="1" FontFamily="Segoe MDL2 Assets" Glyph="&#xE768;" HorizontalAlignment="Center" ToolTipService.ToolTip="播放" Visibility="Collapsed"
+                          PointerEntered="FontIcon_PointerEntered" 
+                          PointerPressed="FontIcon_PointerPressed" 
+                          PointerExited="FontIcon_PointerExited"/>
+                
+                <TextBlock x:Name="TimeSpan" Grid.Column="2" Text="03:43" VerticalAlignment="Center"/>
+
+                <Grid Grid.Column="3" x:Name="FocusedBar"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,134 @@
+﻿<UserControl
+    x:Class="App1.PlayerArea"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
+    mc:Ignorable="d"
+    d:DesignHeight="300">
+
+
+    <Control.Resources>
+        <Storyboard x:Name="ExpandAnimation" Storyboard.TargetName="PlayArea">
+            <DoubleAnimation Storyboard.TargetProperty="Height" From="88" To="300" Duration="0:0:0.2" EnableDependentAnimation="True" RepeatBehavior="0:0:1"/>
+        </Storyboard>
+
+        <Storyboard x:Name="BorderExpandAnimation" Storyboard.TargetName="AlbumCover">
+            <DoubleAnimation Storyboard.TargetProperty="Height" From="88" To="200" Duration="0:0:0.2" EnableDependentAnimation="True" RepeatBehavior="0:0:1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Width" From="88" To="300" Duration="0:0:0.2" EnableDependentAnimation="True" RepeatBehavior="0:0:1"/>
+        </Storyboard>
+
+        <Storyboard x:Name="BorderShrinkAnimation" Storyboard.TargetName="AlbumCover">
+            <DoubleAnimation Storyboard.TargetProperty="Height" From="200" To="88" Duration="0:0:0.2" EnableDependentAnimation="True" RepeatBehavior="0:0:1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Width" From="300" To="88" Duration="0:0:0.2" EnableDependentAnimation="True" RepeatBehavior="0:0:1"/>
+        </Storyboard>
+        
+        <Storyboard x:Name="ShrinkBackAnimation" Storyboard.TargetName="PlayArea">
+            <DoubleAnimation Storyboard.TargetProperty="Height" From="300" To="88" Duration="0:0:0.2" EnableDependentAnimation="True" RepeatBehavior="0:0:1"/>
+        </Storyboard>
+
+        <Storyboard x:Name="ExpandBackAnimation" Storyboard.TargetName="PlayArea">
+            <DoubleAnimation Storyboard.TargetProperty="Height" From="48" To="88" Duration="0:0:0.2" EnableDependentAnimation="True" RepeatBehavior="0:0:1"/>
+        </Storyboard>
+
+        <Storyboard x:Name="ShrinkAnimation" Storyboard.TargetName="PlayArea">
+            <DoubleAnimation Storyboard.TargetProperty="Height" From="88" To="48" Duration="0:0:0.2" EnableDependentAnimation="True" RepeatBehavior="0:0:1"/>
+        </Storyboard>
+
+        <Storyboard x:Name="DownloadBoardFade">
+            <FadeOutThemeAnimation Storyboard.TargetName="DownloadBoard"/>
+        </Storyboard>
+    </Control.Resources>
+
+    <Grid >
+        <Grid x:Name="PlayArea" Height="88"
+                      RelativePanel.AlignBottomWithPanel="True" 
+                      RelativePanel.AlignLeftWithPanel="True" 
+                      RelativePanel.AlignRightWithPanel="True">
+            <Image x:Name="BackImage" Source="Assets/Mouse.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
+            <Border>
+                <Border.Background>
+                    <media:BackdropBlurBrush x:Name="BlurBrush" Amount="10"/>
+                </Border.Background>
+            </Border>
+            <Grid x:Name="Acrylic" Background="{ThemeResource SystemControlAcrylicElementBrush}" Opacity="0.8" Visibility="Collapsed"/>
+            <RelativePanel>
+                <Border x:Name="AlbumCover">
+                    <Image x:Name="AlbumCoverImage" Source="Assets/DefaultCover.png" MaxHeight="150"/>
+                </Border>
+                <TextBlock x:Name="SongPLayingName" FontWeight="Bold" FontSize="18" Margin="10,0,10,0"
+                           RelativePanel.RightOf="AlbumCover"/>
+                <TextBlock x:Name="SongPLayingSingerName" Margin="10,0,10,0"
+                           RelativePanel.AlignLeftWith="SongPLayingName"
+                           RelativePanel.Below="SongPLayingName" />
+                <local:LyricContainer x:Name="LyricArea" Visibility="Collapsed"
+                                      RelativePanel.LeftOf="Expand"
+                                      RelativePanel.RightOf="AlbumCover"
+                                      RelativePanel.AlignTopWithPanel="True"
+                                      RelativePanel.AlignBottomWith="AlbumCover" Margin="0,10,0,0">
+                    
+                </local:LyricContainer>
+                <CommandBar x:Name="CommandButtons" Background="#00E6E6E6" DefaultLabelPosition="Collapsed" 
+                            RelativePanel.AlignHorizontalCenterWith="LyricArea" 
+                            RelativePanel.Above="PlayProcess" RenderTransformOrigin="0.5,0.5">
+                    <CommandBar.RenderTransform>
+                        <CompositeTransform ScaleX="0.75" ScaleY="0.75"/>
+                    </CommandBar.RenderTransform>
+                    <AppBarButton Icon="Back" Click="LastSongButton_Click" ToolTipService.ToolTip="上一首"/>
+                    <AppBarButton x:Name="PlayAndPause" Icon="Play" Click="PlayPauseButton_Click" ToolTipService.ToolTip="播放/暂停"/>
+                    <AppBarButton Icon="Forward" Click="NextSongButton_Click" ToolTipService.ToolTip="下一首"/>
+                    <AppBarSeparator/>
+                    <AppBarButton x:Name="DownLoadButton" Icon="Download" Click="DownloadButton_Click" ToolTipService.ToolTip="朕要下载该歌曲">
+                        <FlyoutBase.AttachedFlyout>
+                            <Flyout>
+                                <TextBlock Text="已下载该歌曲"  />
+                            </Flyout>
+                        </FlyoutBase.AttachedFlyout>
+                    </AppBarButton>
+                    <AppBarButton Icon="MusicInfo" ToolTipService.ToolTip="播放列表" Click="ShowMusicListButton_Click">
+                        <AppBarButton.Flyout>
+                            <Flyout>
+                                <ScrollViewer Height="400" VerticalScrollBarVisibility="Hidden" Width="300">
+                                    <StackPanel x:Name="musiclist"/>
+                                </ScrollViewer>
+                            </Flyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
+                </CommandBar>
+                
+                <StackPanel x:Name="DownloadBoard" RelativePanel.AlignHorizontalCenterWith="CommandButtons" CornerRadius="2"
+                            Opacity="0.0" Margin="0,-45,0,10" Background="#CFCFCFCF" Padding="10,0,10,0">
+                    <TextBlock x:Name="TextBlockStatus" Text="0%" Margin="0,5,0,0"/>
+                    <ProgressBar x:Name="DownloadBar" Width="200" Height="3"></ProgressBar>
+                </StackPanel>
+                
+                <FontIcon x:Name="Expand" FontFamily="Segoe MDL2 Assets" Glyph="&#xE70E;"  PointerEntered="Icon_PointerEntered" PointerExited="Icon_PointerExited" RelativePanel.AlignRightWithPanel="True" Margin="0,0,20,0" PointerPressed="Expand_PointerPressed" RenderTransformOrigin="0.5,0.5" ToolTipService.ToolTip="展开">
+                    <FontIcon.RenderTransform>
+                        <CompositeTransform ScaleX="0.6" ScaleY="0.6"/>
+                    </FontIcon.RenderTransform>
+                </FontIcon>
+                <FontIcon x:Name="Shrink" FontFamily="Segoe MDL2 Assets" Glyph="&#xE70D;"  PointerEntered="Icon_PointerEntered"  PointerExited="Icon_PointerExited"  RelativePanel.AlignRightWithPanel="True" Margin="0,15,20,5" PointerPressed="Shrink_PointerPressed" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ToolTipService.ToolTip="缩小">
+                    <FontIcon.RenderTransform>
+                        <CompositeTransform ScaleX="0.6" ScaleY="0.6"/>
+                    </FontIcon.RenderTransform>
+                </FontIcon>
+                <TextBlock x:Name="WholeTime" Margin="0,-10,20,0" 
+                           RelativePanel.AlignRightWith="PlayProcess" 
+                           RelativePanel.AlignTopWith="PlayProcess"/>
+                <TextBlock x:Name="NowTime" Text="0:00"
+                           RelativePanel.LeftOf="WholeTime"
+                           RelativePanel.AlignTopWith="WholeTime" Margin="0,-10,0,0"/>
+                <Slider x:Name="PlayProcess" Height="40" Margin="10,0,20,0"
+                        RelativePanel.AlignLeftWith="SongPLayingSingerName" 
+                        RelativePanel.AlignBottomWithPanel="True" 
+                        RelativePanel.AlignRightWithPanel="True"
+                        ManipulationStarted="PlayProcess_ManipulationStarted"
+                        ManipulationCompleted="PlayProcess_ManipulationCompleted"
+                        ManipulationMode="All"
+                        ValueChanged="PlayProcess_ValueChanged"/>
+            </RelativePanel>
+        </Grid>
+    </Grid>
+</UserControl>

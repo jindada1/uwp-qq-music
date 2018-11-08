@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="App1.DownLoaded"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls">
+
+    <Grid>
+        <GridView x:Name="LocalFilesContainer" SizeChanged="GridView_SizeChanged"  Margin="0,32,0,0">
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="10"/>
+                </Style>
+            </GridView.ItemContainerStyle>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
+
+        <StackPanel x:Name="EmptyMessage" Width="600" Height="350" Visibility="Collapsed">
+            <Image x:Name="MouseImage" Height="256" Source="Assets/Mouse.jpg" HorizontalAlignment="Center"/>
+            <TextBlock Text="找不到存储音乐的文件夹，请陛下手动定位" HorizontalAlignment="Center" FontSize="20"/>
+            <Button Content="朕亲自来吧" HorizontalAlignment="Center" Click="Button_Click" Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <controls:DropShadowPanel x:Name="Shadow" BlurRadius="8.0" ShadowOpacity="0.70" OffsetX="-3.0" OffsetY="3.0" Color="Black" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+            <Image PointerPressed="Image_PointerPressed" PointerEntered="Image_PointerEntered" Width="100" Source="Assets/musicfolder.png" Margin="0,0,40,40" VerticalAlignment="Top" ToolTipService.ToolTip="朕要亲自在文件资源管理器中打开" PointerExited="Image_PointerExited"/>
+        </controls:DropShadowPanel>
+    </Grid>
+</Page>

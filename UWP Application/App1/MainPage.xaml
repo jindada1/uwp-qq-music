@@ -1,0 +1,67 @@
+﻿<Page
+    x:Class="App1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <NavigationView x:Name="LeftPole" AlwaysShowHeader="False" CompactModeThresholdWidth="500" OpenPaneLength="200" ExpandedModeThresholdWidth="900"  SelectionChanged="LeftPole_SelectionChanged" 
+                    IsBackEnabled="True" BackRequested="LeftPole_BackRequested">
+        <NavigationView.AutoSuggestBox>
+            <AutoSuggestBox x:Name="SearchBox" QueryIcon="Find" QuerySubmitted="SearchBox_QuerySubmitted" PlaceholderText="搜索音乐、歌手" Width="164"/>
+        </NavigationView.AutoSuggestBox>
+
+        <NavigationView.MenuItems>
+            <NavigationViewItem Icon="Home"  Content="丑逼主页" Tag="App1.HomePage" ToolTipService.ToolTip="逛逛"/>
+            <NavigationViewItemSeparator/>
+            <NavigationViewItem Icon="Download"  Content="朕下载的" Tag="App1.DownLoaded" ToolTipService.ToolTip="霸道下载的单曲"/>
+            <NavigationViewItem Content="朕临幸过的" Tag="App1.MySearched" ToolTipService.ToolTip="搜索过的小可爱都在这里哦">
+                <NavigationViewItem.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEB51;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItemSeparator/>
+            <NavigationViewItem Icon="Globe"  Content="刺激刺激" Tag="App1.WebBrowserPage" ToolTipService.ToolTip="网上冲浪"/>
+         </NavigationView.MenuItems>
+            
+        <NavigationView.FocusVisualPrimaryBrush>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="White" Offset="0"/>
+            </LinearGradientBrush>
+        </NavigationView.FocusVisualPrimaryBrush>
+
+        <RelativePanel>
+
+            <Frame x:Name="ContentFrame"
+                   RelativePanel.AlignTopWithPanel="True"
+                   RelativePanel.AlignLeftWithPanel="True"
+                   RelativePanel.AlignRightWithPanel="True"
+                   RelativePanel.AlignBottomWithPanel="True">
+                <Image Source="Assets/WelcomeGIF.gif" Stretch="UniformToFill"/>
+            </Frame>
+
+            <TextBlock Text="上海·嘉定" Margin="20,10,0,0"/>
+            <TextBlock x:Name="WeatherText" Margin="100,10,0,0"/>
+            <Rectangle x:Name="RealTitleBar" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" Fill="#00FFFFFF"/>
+
+            <local:PlayerArea x:Name="playarea"
+                          RelativePanel.AlignBottomWithPanel="True" 
+                          RelativePanel.AlignRightWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"/>
+
+            <StackPanel x:Name="NoPermission" Opacity="0.0" Visibility="Collapsed" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,40,0,0" Spacing="10">
+                <TextBlock Text="不被允许，停止服务" FontSize="36" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="找给你这个程序的人，TA 能解决" HorizontalAlignment="Center" Foreground="Black" FontSize="18"/>
+            </StackPanel>
+
+            <ProgressRing x:Name="pr_ProgressRing1" Width="50" Height="50"
+                          RelativePanel.AlignHorizontalCenterWithPanel="True"
+                          RelativePanel.AlignVerticalCenterWithPanel="True"/>
+        </RelativePanel>
+    </NavigationView>
+</Page>

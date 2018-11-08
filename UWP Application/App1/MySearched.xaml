@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="App1.MySearched"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ListView x:Name="SearchedList" SelectionChanged="SearchedList_SelectionChanged"  Margin="0,32,0,0">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Margin" Value="0 10 0 10"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        
+        <Grid x:Name="EmptyLog" Visibility="Collapsed">
+            <TextBlock Text="这里什么都没有💔" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-57,0,0"/>
+            <TextBlock Text="陛下，您还未临幸过任何小可爱" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Page>

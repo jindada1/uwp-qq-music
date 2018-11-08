@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="App1.SingersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d">
+
+    <Grid>
+        <GridView x:Name="SingersTop15"
+                  ItemsSource="{x:Bind singerList}"
+                  IsSwipeEnabled="False"
+                  SelectionChanged="SingersTop15_SelectionChanged"
+                  SizeChanged="SingersTop15_SizeChanged">
+
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Margin" Value="10"/>
+                </Style>
+            </GridView.ItemContainerStyle>
+            
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="local:Singer" >
+                    <StackPanel Padding="5,5,5,5" Background="White">
+                            <PersonPicture ProfilePicture ="{x:Bind profile_url}" Height="140"/>
+                            <TextBlock Text="{x:Bind name}" HorizontalAlignment="Center" Margin="0,10,0,0" ToolTipService.ToolTip="{x:Bind name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Grid>
+</Page>

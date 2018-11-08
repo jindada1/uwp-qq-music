@@ -1,0 +1,58 @@
+﻿<UserControl
+    x:Class="App1.SexyOption"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="32"
+    d:DesignWidth="100">
+
+    <UserControl.Resources>
+        <Storyboard x:Name="LossLoveAnimRight">
+            <FadeOutThemeAnimation TargetName="UnderStrong"/>
+            <DoubleAnimation Storyboard.TargetName="MyAnimatedTranslateTransform"
+                             Storyboard.TargetProperty="X"
+                             From="0" To="50"
+                             Duration="0:0:0.3" AutoReverse="False"/>
+        </Storyboard>
+        <Storyboard x:Name="LossLoveAnimLeft">
+            <FadeOutThemeAnimation TargetName="UnderStrong"/>
+            <DoubleAnimation Storyboard.TargetName="MyAnimatedTranslateTransform"
+                             Storyboard.TargetProperty="X"
+                             From="0" To="-50"
+                             Duration="0:0:0.3" AutoReverse="False"/>
+        </Storyboard>
+
+        <Storyboard x:Name="GainLoveAnimRight">
+            <FadeInThemeAnimation TargetName="UnderStrong"/>
+            <DoubleAnimation Storyboard.TargetName="MyAnimatedTranslateTransform"
+                             Storyboard.TargetProperty="X"
+                             From="50" To="0"
+                             Duration="0:0:0.3" AutoReverse="False"/>
+        </Storyboard>
+
+        <Storyboard x:Name="GainLoveAnimLeft">
+            <FadeInThemeAnimation  TargetName="UnderStrong"/>
+            <DoubleAnimation Storyboard.TargetName="MyAnimatedTranslateTransform"
+                             Storyboard.TargetProperty="X"
+                             From="-50" To="0"
+                             Duration="0:0:0.3" AutoReverse="False"/>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <RelativePanel PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited">
+        <TextBlock x:Name="OptionName" RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="#FFB0B0B0" />
+
+        <Rectangle x:Name="UnderStrong" Height="4" Fill="#FF13C36B" Visibility="Collapsed"
+                   RelativePanel.AlignBottomWithPanel="True"
+                   RelativePanel.AlignLeftWith="OptionName" 
+                   RelativePanel.AlignRightWith="OptionName">
+            <Rectangle.RenderTransform>
+                <TranslateTransform x:Name="MyAnimatedTranslateTransform" />
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        
+    </RelativePanel>
+</UserControl>

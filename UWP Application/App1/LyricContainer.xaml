@@ -1,0 +1,36 @@
+﻿<UserControl
+    x:Class="App1.LyricContainer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <ScrollViewer x:Name="ScrollContainer" VerticalScrollBarVisibility="Hidden" SizeChanged="ScrollContainer_SizeChanged" Foreground="#FF3C3C3C">
+            <StackPanel Spacing="20" x:Name="Lyrics">
+            </StackPanel>
+        </ScrollViewer>
+        <!--
+        <Rectangle Height="50" VerticalAlignment="Top">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#B2FFFFFF"/>
+                    <GradientStop Color="Transparent" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Height="50" VerticalAlignment="Bottom">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                    <GradientStop Color="#B2FFFFFF"/>
+                    <GradientStop Color="Transparent" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        -->
+    </Grid>
+</UserControl>
