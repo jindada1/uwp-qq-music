@@ -46,7 +46,7 @@
             </Frame>
 
             <TextBlock Text="上海·嘉定" Margin="20,10,0,0"/>
-            <TextBlock x:Name="WeatherText" Margin="100,10,0,0"/>
+            <TextBlock x:Name="WeatherText" Text="天气晴朗" Margin="100,10,0,0"/>
             <Rectangle x:Name="RealTitleBar" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" Fill="#00FFFFFF"/>
 
             <local:PlayerArea x:Name="playarea"
