@@ -1,19 +1,20 @@
-### 操作系统
+### 运行环境
 + win 10
 
-### 安装包zip链接
+### 如果想直接运行，可以下载安装包，zip链接
 链接: https://pan.baidu.com/s/1sDQX5lIT1U-Hb2NNdiMjPw 
 提取码: gb9i
 
 ### 安装方式
-+ 设置里 开启开发者模式
++ 设置里 开启开发者模式，详情见 Configuration&Deployment.md 
+https://github.com/jindada1/-UWP-Application/blob/master/Configuration%20%26%20Deployment.md
 ![QQ图片20181106232125](assets/QQ图片20181107010324.png)
 
 + 打开下载的zip安装包，右键点击Add-AppDevPackage.ps1（带一点蓝色图标），选择在powershell中打开，然后在powershell里一路按 y 确定就好了
 
 ![QQ图片20181106232125](assets/QQ图片20181107010434.png)
 
-### 跑源码
+### 如果想修改程序，可以跑源码
 + 重新生成
 ![QQ图片20181106232125](assets/QQ图片20181108175829.png)
 
